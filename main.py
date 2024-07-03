@@ -1,8 +1,8 @@
 import logging
 from crewai import Crew
 from textwrap import dedent
-from com.aniket.build.mrkt.analysis.agents.market_observers import MarketObserverAgents
-from com.aniket.build.mrkt.analysis.tasks.employee_goals import AgentGoals
+from com.aniket.dev.mrkt.analysis.agents.market_observers import MarketObserverAgents
+from com.aniket.dev.mrkt.analysis.tasks.employee_goals import AgentGoals
 from dotenv import load_dotenv
 
 # Load environment variables
