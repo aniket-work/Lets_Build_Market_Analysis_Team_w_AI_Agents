@@ -2,7 +2,18 @@ import json
 from crewai import Task
 from textwrap import dedent
 
-CONFIG_FILE_PATH        = '../../../../../../config/config.json'
+import os
+
+# Get the directory of the current script
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+print("current_dir" + current_dir)
+
+# Navigate up to the project root
+project_root = os.path.abspath(os.path.join(current_dir, '..', '..', '..', '..', '..', '..'))
+
+# Construct the path to the config file
+CONFIG_FILE_PATH        = os.path.join(project_root, 'config', 'config.json')
 TIP_SECTION_KEY         = 'rewards'
 TASKS_KEY               = 'tasks'
 RESEARCH_KEY            = 'research'

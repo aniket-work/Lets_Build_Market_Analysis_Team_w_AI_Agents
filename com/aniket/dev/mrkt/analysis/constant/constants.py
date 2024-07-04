@@ -9,7 +9,7 @@ GROQ_API_KEY = "GROQ_API_KEY"
 OLLAMA_BASE_URL = "http://localhost:11434/v1"
 
 # Timeouts
-REQUEST_TIMEOUT = 3000
+REQUEST_TIMEOUT = 300000
 
 # Placeholder API key
 PLACEHOLDER_API_KEY = "NA"
