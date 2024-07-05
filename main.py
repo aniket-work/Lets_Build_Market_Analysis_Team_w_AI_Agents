@@ -130,10 +130,6 @@ def update_logs(log_placeholder, status_placeholder, stop_event):
         time.sleep(10)
 
 
-import streamlit as st
-from streamlit_extras.colored_header import colored_header
-from streamlit_extras.add_vertical_space import add_vertical_space
-
 
 def main():
     st.set_page_config(page_title="AI Agents - Powered Market Analysis Tool", page_icon="📊", layout="wide")
