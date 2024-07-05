@@ -14,3 +14,4 @@ unstructured
 sec-api
 psutil
 ansi2html
+streamlit-extras

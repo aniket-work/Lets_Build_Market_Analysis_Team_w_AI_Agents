@@ -10,6 +10,9 @@ import queue
 import time
 import sys
 import os
+import streamlit as st
+from streamlit_extras.colored_header import colored_header
+from streamlit_extras.add_vertical_space import add_vertical_space
 
 # Load environment variables
 load_dotenv()
@@ -127,19 +130,75 @@ def update_logs(log_placeholder, status_placeholder, stop_event):
         time.sleep(10)
 
 
+import streamlit as st
+from streamlit_extras.colored_header import colored_header
+from streamlit_extras.add_vertical_space import add_vertical_space
+
+
 def main():
-    st.set_page_config(page_title="Market Analysis Tool", page_icon="📊", layout="wide")
+    st.set_page_config(page_title="AI Agents - Powered Market Analysis Tool", page_icon="📊", layout="wide")
 
-    st.title("Market Analysis Tool")
-    st.write("This tool analyzes a company using AI agents to provide insights.")
+    # Custom CSS for a more professional look and better alignment
+    st.markdown("""
+    <style>
+    .main {
+        padding: 2rem;
+        background-color: #f0f2f6;
+    }
+    .stButton>button {
+        width: 100%;
+        font-weight: bold;
+        height: 3em;
+    }
+    .log-container {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: white;
+        height: 400px;
+        overflow-y: scroll;
+        padding: 10px;
+        font-family: monospace;
+    }
+    .status-text {
+        font-weight: bold;
+        color: #1E90FF;
+    }
+    .centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .icon-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
-    company = st.text_input("Enter the company you want to analyze:")
+    # Center-aligned header with icon
+    st.markdown('<div class="icon-title">', unsafe_allow_html=True)
+    st.markdown('# 📊 AI Agents - Powered Market Analysis Tool')
+    st.markdown('</div>', unsafe_allow_html=True)
 
-    if st.button("Start Analysis"):
+    colored_header(label="", description="Gain deep insights into any company using advanced AI agents",
+                   color_name="blue-70")
+
+    add_vertical_space(2)
+
+    st.write("Enter a company name below to start a comprehensive market analysis powered by our AI agents.")
+
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        company = st.text_input("Company Name:", placeholder="e.g. Tesla, Apple, Microsoft")
+        start_analysis = st.button("Start Analysis")
+
+    if start_analysis:
         if company:
-            # Create placeholders for logs and status
-            log_placeholder = st.empty()
+            progress_bar = st.progress(0)
             status_placeholder = st.empty()
+            log_placeholder = st.empty()
 
             # Redirect stdout and stderr to the log file
             sys.stdout = TeeLogger(log_file, "w", sys.stdout)
@@ -158,12 +217,15 @@ def main():
                 if new_logs:
                     full_logs += new_logs
                     log_placeholder.markdown(f"""
-                    <div style="height: 300px; overflow-y: scroll; background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
+                    <div class="log-container">
                         {full_logs}
                     </div>
                     """, unsafe_allow_html=True)
-                status_placeholder.text("Analysis in progress...")
-                time.sleep(1)  # Check more frequently
+                status_placeholder.markdown('<p class="status-text">Analysis in progress...</p>',
+                                            unsafe_allow_html=True)
+                progress_bar.progress(
+                    min(last_position / 1000, 1.0))  # Adjust the denominator based on expected log size
+                time.sleep(1)
 
             # Get the final result
             result = result_queue.get()
@@ -173,10 +235,22 @@ def main():
             sys.stderr = sys.__stderr__
 
             # Display the final result
-            st.subheader("Analysis Report")
-            st.text_area("Result", result, height=400)
+            progress_bar.progress(1.0)
+            status_placeholder.markdown('<p class="status-text">Analysis Complete!</p>', unsafe_allow_html=True)
+            st.success("Market analysis completed successfully!")
+
+            with st.expander("View Detailed Analysis Report", expanded=True):
+                st.markdown(result)
+
+            st.download_button(
+                label="Download Full Report",
+                data=result,
+                file_name=f"{company}_market_analysis.txt",
+                mime="text/plain"
+            )
         else:
-            st.warning("Please enter a company name.")
+            st.warning("Please enter a company name to begin the analysis.")
+
 
 if __name__ == "__main__":
     main()
