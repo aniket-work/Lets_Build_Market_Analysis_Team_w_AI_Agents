@@ -3,18 +3,18 @@ Let's Build Market Analysis Team w/ AI Agents
 
 ## Introduction
 
-This project demonstrates how AI enables one-person businesses, allowing anyone to become an entrepreneur or solopreneur. By leveraging AI tools, we can now handle complex tasks that previously required multiple experts. This README guides you through setting up and running an AI-powered real estate business that uses AI for property classification and management.
+This project demonstrates how AI enables one-person businesses, allowing anyone to become an entrepreneur or solopreneur. By leveraging AI tools, we can now handle complex tasks that previously required multiple experts. This README guides you through setting up and running an AI-powered Market Analysis business that uses AI for property classification and management.
 
 ## What's This Project About?
 
 This project is a practical implementation of a one-person startup powered entirely by AI. It includes:
 
-1. A Streamlit-based frontend for a real estate management website
+1. A Streamlit-based frontend for a Market Analysis management website
 2. A Flask backend server that communicates with an AI model
 3. AI-powered property classification for categorizing listings
 4. A simple database system for storing property information
 
-The project demonstrates how AI can automate tasks like property categorization, enabling efficient management of a real estate business by a single person.
+The project demonstrates how AI can automate tasks like property categorization, enabling efficient management of a Market Analysis business by a single person.
 
 ## Why Use This Project?
 
@@ -63,30 +63,7 @@ The project consists of the following components:
      pip install -r requirements.txt
      ```
 
-3. **Setup Sqlite Database**
-    - cd to <proj_root>/database
-    - Open database
-      ```sql
-      sqlite3 housing.db
-      ```
-    - list all tables
-    ```sql
-       .tables
-       .schema
-    ```
-    - execute few operations
-     ```sql
-       select * from housing;
-   
-      test load data
-    curl -X POST -F "file=@C:\tmp\housing.csv" http://localhost:5000/process_client_onboard
-    {
-      "message": "Table 'customer' created successfully"
-    }
-
-     ```
-
-4. **Setup Groq Key:**
+3. **Setup Groq Key:**
 
    - Obtain your Groq API key from [Groq Console](https://console.groq.com/keys).
    - Set your key in the `.env` file as follows:
@@ -95,9 +72,9 @@ The project consists of the following components:
      GROQ_API_KEY=<YOUR_KEY>
      ```
 
-5. **Run the Real Estate AI Application**
+4. **Run the Market Analysis AI Application**
 
-   Finally, execute the following command to start the Real Estate AI application:
+   Finally, execute the following command to start the Market Analysis AI application:
 
    ```bash
    # Run Batch Job service
