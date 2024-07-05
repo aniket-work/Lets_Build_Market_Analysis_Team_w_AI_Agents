@@ -79,9 +79,8 @@ The project consists of the following components:
 
    Finally, execute the following command to start the Market Analysis AI application:
 
-   ```bash
-   # Run Batch Job service
-   python ~/PycharmProjects/Build_Market_Analysis_Team_w_AI_Agents/Batch_Job.py
+   ```bash   
    # Run UI
-   streamlit run main.py  
+   streamlit run main.py
+   ```  
 
