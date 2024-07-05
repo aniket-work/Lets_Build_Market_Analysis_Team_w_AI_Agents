@@ -13,3 +13,4 @@ yfinance
 unstructured
 sec-api
 psutil
+ansi2html

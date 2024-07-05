@@ -46,14 +46,23 @@ logger = logging.getLogger(__name__)
 for handler in logger.handlers:
     handler.flush = lambda: None
 
+import re
+
+from ansi2html import Ansi2HTMLConverter
+
+conv = Ansi2HTMLConverter()
+
 def read_new_logs(last_position):
     if os.path.exists(log_file):
         with open(log_file, 'r') as file:
             file.seek(last_position)
             new_content = file.read()
             new_position = file.tell()
+        # Convert ANSI to HTML
+        new_content = conv.convert(new_content)
         return new_content, new_position
     return "", 0
+
 
 class MarketAnalysis:
     def __init__(self, company):
@@ -150,7 +159,7 @@ def main():
                     full_logs += new_logs
                     log_placeholder.markdown(f"""
                     <div style="height: 300px; overflow-y: scroll; background-color: #f0f0f0; padding: 10px; border-radius: 5px;">
-                        <pre>{full_logs}</pre>
+                        {full_logs}
                     </div>
                     """, unsafe_allow_html=True)
                 status_placeholder.text("Analysis in progress...")
