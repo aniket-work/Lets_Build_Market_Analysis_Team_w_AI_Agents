@@ -63,13 +63,16 @@ The project consists of the following components:
      pip install -r requirements.txt
      ```
 
-3. **Setup Groq Key:**
+3. **Setup Keys : **
 
    - Obtain your Groq API key from [Groq Console](https://console.groq.com/keys).
    - Set your key in the `.env` file as follows:
    
      ```plaintext
-     GROQ_API_KEY=<YOUR_KEY>
+    GROQ_API_KEY=<YOUR_KEY>       
+    SERPER_API_KEY=KEY # https://serper.dev/     
+    SEC_API_API_KEY=KEY # https://sec-api.io/ 
+    
      ```
 
 4. **Run the Market Analysis AI Application**
