@@ -1,9 +1,6 @@
 # Lets_Build_Market_Analysis_Team_w_AI_Agents
 Let's Build Market Analysis Team w/ AI Agents
 
-# Build_Market_Analysis_Team_w_AI_Agents
-Let's Build Simple 'Real Estate' Business Using AI Agents
-
 ## Introduction
 
 This project demonstrates how AI enables one-person businesses, allowing anyone to become an entrepreneur or solopreneur. By leveraging AI tools, we can now handle complex tasks that previously required multiple experts. This README guides you through setting up and running an AI-powered real estate business that uses AI for property classification and management.
